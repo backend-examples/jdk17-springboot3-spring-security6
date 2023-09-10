@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RoleMapper">
+
+    <insert id="insertRole" parameterType="Role">
+        <selectKey keyProperty="roleId" resultType="integer" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into tb_role values (#{roleId}, #{roleName}, #{remark}, #{delFlag}, #{createTime}, #{updateTime})
+    </insert>
+
+    <sql id="selectAllProperties">
+        select * from tb_role
+    </sql>
+    <select id="selectRoleById" parameterType="integer" resultType="Role">
+        <include refid="selectAllProperties"/>
+        where roleId=#{roleId} and delFlag=0
+    </select>
+
+    <select id="selectRoleList" resultType="Role">
+        <include refid="selectAllProperties"/>
+        where delFlag=0
+    </select>
+
+    <update id="updateRoleById" parameterType="Role">
+        update tb_role set roleName=#{roleName}, remark=#{remark}, updateTime=#{updateTime}
+        where roleId=#{roleId} and delFlag=0
+    </update>
+
+    <update id="deleteRoleById">
+        update tb_role set delFlag=#{delFlag}, updateTime=#{updateTime}
+        where roleId=#{roleId} and delFlag=0
+    </update>
+</mapper>

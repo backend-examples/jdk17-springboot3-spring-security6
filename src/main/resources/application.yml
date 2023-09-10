@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: @activatedProperties@ # 这里引用的是pom.xml中配置的key，@activatedProperties@ 中内如必须与 profile=>properties=> activatedProperties节点一致
+  main:
+    allow-circular-references: true
+
+mybatis:
+  mapper-locations: classpath*:/mapper/*.xml
+  type-aliases-package: com.example.pojo
+  config-location: classpath:sqlMapConfig.xml
+
+logging:
+  level:
+    root: debug
+
+debug: true
+
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌有效期（默认24小时）
+  expireTime: 86400
+  # 令牌密钥
+  secret: C*F-JaNdRgUkXn2r5u8x/A?D(G+KbPeShVmYq3s6v9y$B&E)H@McQfTjWnZr4u7w

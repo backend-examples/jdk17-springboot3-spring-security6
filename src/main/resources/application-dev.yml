@@ -1,0 +1,13 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /springboot3
+
+primary:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  jdbc-url: jdbc:mysql://localhost:3306/authorization?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&serverTimezone=UTC
+  username: root
+  password: root
+  connection-timeout: 60000
+  maximum-pool-size: 5
+  minimum-idle: 2
